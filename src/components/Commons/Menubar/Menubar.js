@@ -20,7 +20,7 @@ const Menubar = () => {
             {/* logo */}
             <div className="w-1/4">
               <ORImage
-                image="/images/logo.png"
+                image="/images/Logo.png"
                 width="70"
                 height="20"
                 alt="logo"
