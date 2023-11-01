@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  useEffect(() => {
+  const [open, setOpen] = useEffect(() => {
     setOpen(JSON.parse(localStorage.getItem("themeSwitcherOpen")) || false);
   }, []);
 
