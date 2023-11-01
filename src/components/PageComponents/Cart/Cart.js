@@ -10,6 +10,7 @@ import {
 
 import React, { useState } from "react";
 import ORInput from "@/components/Reuse/ORInput";
+import Link from "next/link";
 
 const Cart = () => {
   const {
@@ -111,9 +112,12 @@ const Cart = () => {
             </table>
 
             <div className="text-right mt-10">
-              <button className="bg-main-color py-3 px-5 text-white-color">
+              <Link
+                href="/thankyou"
+                className="bg-main-color py-3 px-5 text-white-color"
+              >
                 Proceed to Checkout
-              </button>
+              </Link>
             </div>
           </div>
         </ORContainer>
