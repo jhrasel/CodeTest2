@@ -38,7 +38,7 @@ const Menubar = () => {
                       className={`${
                         pathname === data.url
                           ? "text-main-color"
-                          : "text-text-color"
+                          : "text-text-color dark:text-white-color"
                       }`}
                     />
                   </ORListItem>

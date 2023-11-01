@@ -36,7 +36,7 @@ const Cart = () => {
     <>
       <section className="mt-7">
         <ORContainer>
-          <H2 h2="Cart" className="mb-8" />
+          <H2 h2="Cart" className="mb-8 dark:text-white-color" />
 
           <div className="">
             <table class="table-fixed w-full border-collapse border">
@@ -73,7 +73,7 @@ const Cart = () => {
                     <td className="border border-slate-300 py-2 px-4">
                       <div className="relative w-36">
                         <button
-                          className="text-4xl text-orange-400 absolute top-0 left-0"
+                          className="text-4xl text-orange-400 absolute top-0 left-0 dark:text-white-color"
                           onClick={() => decrementQuantity(data.id)}
                         >
                           <AiFillMinusSquare />
@@ -84,7 +84,7 @@ const Cart = () => {
                           className="border-2 px-5 py-1 w-36 text-center focus:outline-none"
                         />
                         <button
-                          className="text-4xl text-orange-400 absolute top-0 right-0"
+                          className="text-4xl text-orange-400 absolute top-0 right-0 dark:text-white-color"
                           onClick={() => incrementQuantity(data.id)}
                         >
                           <AiFillPlusSquare />
@@ -102,10 +102,13 @@ const Cart = () => {
                   <td></td>
                   <td></td>
                   <td className="border border-slate-300 py-2 px-4">
-                    <H4 h4="Total"></H4>
+                    <H4 h4="Total" className="dark:text-white-color"></H4>
                   </td>
                   <td className="border border-slate-300 py-2 px-4">
-                    <H4 h4={roundedPrice}></H4>
+                    <H4
+                      h4={roundedPrice}
+                      className="dark:text-white-color"
+                    ></H4>
                   </td>
                 </tr>
               </tbody>
