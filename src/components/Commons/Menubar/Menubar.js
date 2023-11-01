@@ -20,7 +20,7 @@ const Menubar = () => {
           <div className="grid-cols-1 flex items-center justify-between">
             {/* logo */}
             <div className="w-1/4">
-              <Link href="/">
+              <Link href="/product">
                 <ORImage
                   image="/images/Logo.png"
                   width="70"
