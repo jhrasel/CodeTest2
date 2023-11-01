@@ -7,7 +7,7 @@ import ORImage from "@/components/Reuse/ORImage";
 import { TbCurrencyTaka } from "react-icons/tb";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import CustomPlaceholder from "./CustomPlaceholder";
+import { useCartContext } from "@/context/AppContext";
 
 const ProductsPerPage = 8;
 
@@ -18,6 +18,8 @@ const Product = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [sortOrder, setSortOrder] = useState("lowToHigh"); // Default sorting order
+
+  const { addToCart, cartItems } = useCartContext();
 
   useEffect(() => {
     fetchProducts()
@@ -109,17 +111,13 @@ const Product = () => {
               <div className="p-5 border-2 border-slate-200" key={index}>
                 {/* images */}
                 <div className="text-center">
-                  {loading ? (
-                    <CustomPlaceholder />
-                  ) : (
-                    <ORImage
-                      image={product.image}
-                      width="200"
-                      height="200"
-                      alt="product-images"
-                      className="w-auto h-52 m-auto"
-                    />
-                  )}
+                  <ORImage
+                    image={product.image}
+                    width="200"
+                    height="200"
+                    alt="product-images"
+                    className="w-auto h-52 m-auto"
+                  />
                 </div>
                 {/* content */}
                 <div className="mt-5">
@@ -136,7 +134,10 @@ const Product = () => {
                     className="line-clamp-3 h-[70px]"
                   />
 
-                  <button className="bg-orange-400 mt-6 w-full p-2 text-white-color ease-in duration-300 hover:bg-orange-600">
+                  <button
+                    onClick={() => addToCart(product)}
+                    className="bg-orange-400 mt-6 w-full p-2 text-white-color ease-in duration-300 hover:bg-orange-600 cursor-pointer"
+                  >
                     Add to Cart
                   </button>
                 </div>
