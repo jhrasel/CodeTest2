@@ -53,7 +53,10 @@ const Cart = () => {
                 {cartItems?.map((data, i) => (
                   <tr key={i}>
                     <td className="border border-slate-300 py-2 px-4 w-24 text-center">
-                      <button onClick={()=>removeFromCart(data.id)} className="cursor-pointer text-3xl text-red-500">
+                      <button
+                        onClick={() => removeFromCart(data.id)}
+                        className="cursor-pointer text-3xl text-red-500"
+                      >
                         <AiFillCloseCircle />
                       </button>
                     </td>
@@ -85,7 +88,8 @@ const Cart = () => {
                       </div>
                     </td>
                     <td className="border border-slate-300 py-2 px-4">
-                      {data.price * data.quantity}
+                      {/* {data.price * data.quantity} */}
+                      {`${data.price * data.quantity}`.slice(0, 2)}
                     </td>
                   </tr>
                 ))}
@@ -98,7 +102,7 @@ const Cart = () => {
                     <H4 h4="Total"></H4>
                   </td>
                   <td className="border border-slate-300 py-2 px-4">
-                    <H4 h4={totalCartPrice}></H4>
+                    <H4 h4={totalCartPrice.slice(0, 2)}></H4>
                   </td>
                 </tr>
               </tbody>
