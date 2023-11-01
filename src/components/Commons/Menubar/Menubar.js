@@ -9,6 +9,7 @@ import { Data } from "./Data";
 import { ORLink } from "@/components/Reuse/Tags";
 
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const Menubar = () => {
   const pathname = usePathname();
@@ -19,12 +20,14 @@ const Menubar = () => {
           <div className="grid-cols-1 flex items-center justify-between">
             {/* logo */}
             <div className="w-1/4">
-              <ORImage
-                image="/images/Logo.png"
-                width="70"
-                height="20"
-                alt="logo"
-              />
+              <Link href="/">
+                <ORImage
+                  image="/images/Logo.png"
+                  width="70"
+                  height="20"
+                  alt="logo"
+                />
+              </Link>
             </div>
 
             {/* menu */}
