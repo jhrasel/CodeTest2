@@ -1,20 +1,17 @@
-"use client";
+import React, { useState, useEffect } from "react";
 import ORImage from "@/components/Reuse/ORImage";
 import { useTheme } from "next-themes";
-import { useState, useEffect } from "react";
 
 const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [open, setOpen] = useState(
-    // Initialize open state from localStorage or default to false
-    JSON.parse(localStorage.getItem("themeSwitcherOpen")) || false
-  );
+  useEffect(() => {
+    setOpen(JSON.parse(localStorage.getItem("themeSwitcherOpen")) || false);
+  }, []);
 
   const handleOpen = () => {
     const newOpen = !open;
     setOpen(newOpen);
-    // Save the open state to localStorage
     localStorage.setItem("themeSwitcherOpen", JSON.stringify(newOpen));
   };
 

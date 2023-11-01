@@ -36,8 +36,6 @@ const Product = () => {
       });
   }, []);
 
-  console.log("loading", loading);
-
   // Calculate the index range for the current page
   const startIndex = (currentPage - 1) * ProductsPerPage;
   const endIndex = currentPage * ProductsPerPage;
