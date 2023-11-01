@@ -29,7 +29,6 @@ const Categorybar = () => {
 
             {/* right */}
             <div className="flex items-center justify-end gap-6 text-3xl">
-
               {/* cart */}
               <div className="">
                 <AiOutlineShoppingCart />
@@ -37,9 +36,8 @@ const Categorybar = () => {
 
               {/* user */}
               <div className="">
-                <BiSolidUserCircle/>
+                <BiSolidUserCircle />
               </div>
-
             </div>
           </div>
         </ORContainer>
