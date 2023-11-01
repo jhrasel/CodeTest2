@@ -14,8 +14,10 @@ const ProductsPerPage = 8;
 const Product = () => {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1); // Current page
-  const [totalPages, setTotalPages] = useState(0); // Total number of pages
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [categoryFilter, setCategoryFilter] = useState("all");
+  const [sortOrder, setSortOrder] = useState("lowToHigh"); // Default sorting order
 
   useEffect(() => {
     fetchProducts()
@@ -33,14 +35,74 @@ const Product = () => {
   const startIndex = (currentPage - 1) * ProductsPerPage;
   const endIndex = currentPage * ProductsPerPage;
 
-  // Get the products for the current page
-  const currentPageProducts = products.slice(startIndex, endIndex);
+  // Filter products based on the selected category
+  const filteredProducts =
+    categoryFilter === "all"
+      ? products
+      : products.filter((product) => product.category === categoryFilter);
+
+  // Sort products based on the selected sorting order
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortOrder === "lowToHigh") {
+      return a.price - b.price;
+    } else if (sortOrder === "highToLow") {
+      return b.price - a.price;
+    }
+    return 0;
+  });
+
+  // Get the products for the current page, category, and sorting order
+  const currentPageProducts = sortedProducts.slice(startIndex, endIndex);
+
+  // Get unique categories from the products for filtering
+  const uniqueCategories = Array.from(
+    new Set(products.map((product) => product.category))
+  );
 
   return (
     <>
       <section className="mt-7">
         <ORContainer>
           <H2 h2="Products" className="mb-8" />
+
+          {/* Filter products by category and sort by price */}
+          <div className="mb-5 flex justify-between items-center">
+            <div>
+              <label
+                htmlFor="categoryFilter"
+                className="mr-3 text-lg font-semibold"
+              >
+                Category:
+              </label>
+              <select
+                id="categoryFilter"
+                value={categoryFilter}
+                onChange={(e) => setCategoryFilter(e.target.value)}
+                className="border-2 rounded-lg px-4 py-1 capitalize"
+              >
+                <option value="all">All</option>
+                {uniqueCategories.map((category) => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="sortOrder" className="mr-3 text-lg font-semibold">
+                Sort by Price:
+              </label>
+              <select
+                id="sortOrder"
+                value={sortOrder}
+                onChange={(e) => setSortOrder(e.target.value)}
+                className="border-2 rounded-lg px-4 py-1 capitalize"
+              >
+                <option value="lowToHigh">Low to High</option>
+                <option value="highToLow">High to Low</option>
+              </select>
+            </div>
+          </div>
 
           <div className="grid grid-cols-4 gap-7">
             {currentPageProducts.map((product, index) => (
